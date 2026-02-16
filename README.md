@@ -1,4 +1,4 @@
-# Orders & Customers - Microservicios
+# Pedidos & Clientes - Microservicios
 
 Aplicación backend compuesta por dos microservicios en Rails: **Order Service** (Servicio de Pedidos) y **Customer Service** (Servicio de Clientes). El Order Service se comunica con el Customer Service mediante HTTP y utiliza RabbitMQ para actualizaciones basadas en eventos.
 
