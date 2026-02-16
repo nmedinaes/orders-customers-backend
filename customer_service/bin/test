@@ -1,5 +1,6 @@
 #!/bin/bash -e
 export RAILS_ENV=test
-export DATABASE_URL="${DATABASE_URL:-postgres://postgres:postgres@postgres:5432/customer_service_test}"
+# Forzar BD de test (Docker Compose inyecta DATABASE_URL de development)
+export DATABASE_URL="postgres://postgres:postgres@postgres:5432/customer_service_test"
 ./bin/rails db:create db:migrate 2>/dev/null || true
 exec bundle exec rspec "$@"
