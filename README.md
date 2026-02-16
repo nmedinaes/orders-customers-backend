@@ -2,6 +2,11 @@
 
 Aplicación backend compuesta por dos microservicios en Rails: **Order Service** (Servicio de Pedidos) y **Customer Service** (Servicio de Clientes). El Order Service se comunica con el Customer Service mediante HTTP y utiliza RabbitMQ para actualizaciones basadas en eventos.
 
+<img width="1227" height="262" alt="image" src="https://github.com/user-attachments/assets/e509e865-f329-4b6c-b504-f369657d827a" />
+<img width="866" height="543" alt="image" src="https://github.com/user-attachments/assets/541f218b-aec3-4225-b1f1-43f416ce3360" />
+<img width="949" height="468" alt="image" src="https://github.com/user-attachments/assets/1d1c524b-cb1d-47d1-b5b2-a86d5deb126d" />
+<img width="1092" height="280" alt="image" src="https://github.com/user-attachments/assets/e8dd6e82-b819-4ac6-bccc-df712d4d6a01" />
+
 ## Arquitectura
 <img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/6b3b742c-b117-464f-82c2-399410db3326" />
 
