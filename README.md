@@ -99,23 +99,49 @@ Requisitos: Ruby 3.2, PostgreSQL, RabbitMQ
 
 ```
 .
-├── order_service/              # Servicio de Pedidos (Rails API)
+├── order_service/                    # Servicio de Pedidos (Rails API)
 │   ├── app/
 │   │   ├── controllers/api/v1/orders_controller.rb
 │   │   ├── models/order.rb
 │   │   └── services/
 │   │       ├── customer_service_client.rb   # Cliente HTTP al Customer Service
 │   │       └── order_event_publisher.rb     # Publica eventos en RabbitMQ
-│   └── spec/
-├── customer_service/           # Servicio de Clientes (Rails API)
+│   ├── bin/
+│   │   ├── docker-entrypoint
+│   │   └── test                        # Script para ejecutar pruebas
+│   ├── db/
+│   │   └── migrate/
+│   ├── spec/
+│   │   ├── factories/
+│   │   ├── models/
+│   │   ├── requests/
+│   │   ├── services/
+│   │   └── support/
+│   ├── Dockerfile.dev
+│   └── Gemfile
+├── customer_service/                 # Servicio de Clientes (Rails API)
 │   ├── app/
 │   │   ├── controllers/api/v1/customers_controller.rb
 │   │   ├── models/customer.rb
-│   │   └── services/order_event_consumer.rb # Consume eventos de RabbitMQ
-│   ├── db/seeds.rb             # Clientes predefinidos
-│   └── spec/
+│   │   └── services/order_event_consumer.rb  # Consume eventos de RabbitMQ
+│   ├── bin/
+│   │   ├── docker-entrypoint         # db:prepare + db:seed al arrancar
+│   │   └── test                      # Script para ejecutar pruebas
+│   ├── db/
+│   │   ├── migrate/
+│   │   └── seeds.rb                  # Clientes predefinidos
+│   ├── lib/tasks/
+│   │   └── consumer.rake             # Tarea orders:consumer
+│   ├── spec/
+│   │   ├── factories/
+│   │   ├── models/
+│   │   ├── requests/
+│   │   ├── services/
+│   │   └── support/
+│   ├── Dockerfile.dev
+│   └── Gemfile
 ├── docker/
-│   └── postgres/init.sql       # Creación de bases de datos al iniciar
+│   └── postgres/init.sql             # Creación de bases de datos al iniciar
 └── docker-compose.yml
 ```
 
