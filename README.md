@@ -3,28 +3,7 @@
 Aplicación backend compuesta por dos microservicios en Rails: **Order Service** (Servicio de Pedidos) y **Customer Service** (Servicio de Clientes). El Order Service se comunica con el Customer Service mediante HTTP y utiliza RabbitMQ para actualizaciones basadas en eventos.
 
 ## Arquitectura
-
-```
-┌─────────────────────┐      HTTP       ┌──────────────────────┐
-│   Order Service     │────────────────▶│  Customer Service    │
-│   (puerto 3002)     │                 │   (puerto 3001)      │
-└──────────┬──────────┘                 └──────────┬───────────┘
-           │                                       │
-           │ publica                               │ consume
-           │ order.created                         │ order.created
-           ▼                                       ▼
-┌──────────────────────────────────────────────────────────────┐
-│                        RabbitMQ                              │
-│               Exchange: orders                               │
-│               Routing key: order.created                     │
-└──────────────────────────────────────────────────────────────┘
-           │                                       │
-           ▼                                       ▼
-┌─────────────────────┐               ┌──────────────────────┐
-│    PostgreSQL       │               │    PostgreSQL        │
-│ order_service_*     │               │ customer_service_*   │
-└─────────────────────┘               └──────────────────────┘
-```
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/6b3b742c-b117-464f-82c2-399410db3326" />
 
 ### Flujo de trabajo
 
