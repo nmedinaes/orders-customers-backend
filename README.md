@@ -112,10 +112,10 @@ Requisitos: Ruby 3.2, PostgreSQL, RabbitMQ
 │   ├── db/
 │   │   └── migrate/
 │   ├── spec/
-│   │   ├── factories/
-│   │   ├── models/
-│   │   ├── requests/
-│   │   ├── services/
+│   │   ├── factories/orders.rb
+│   │   ├── models/order_spec.rb
+│   │   ├── requests/orders_spec.rb
+│   │   ├── services/customer_service_client_spec.rb
 │   │   └── support/
 │   ├── Dockerfile.dev
 │   └── Gemfile
@@ -133,11 +133,10 @@ Requisitos: Ruby 3.2, PostgreSQL, RabbitMQ
 │   ├── lib/tasks/
 │   │   └── consumer.rake             # Tarea orders:consumer
 │   ├── spec/
-│   │   ├── factories/
-│   │   ├── models/
-│   │   ├── requests/
-│   │   ├── services/
-│   │   └── support/
+│   │   ├── factories/customers.rb
+│   │   ├── models/customer_spec.rb
+│   │   ├── requests/customers_spec.rb
+│   │   └── services/order_event_consumer_spec.rb
 │   ├── Dockerfile.dev
 │   └── Gemfile
 ├── docker/
