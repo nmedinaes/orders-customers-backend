@@ -85,12 +85,14 @@ Ejecutar los tests (el script `bin/test` aplica migraciones de test si hace falt
 ```bash
 # Customer Service
 docker compose run --rm customer_service bash bin/test
-<img width="779" height="198" alt="image" src="https://github.com/user-attachments/assets/71197cd9-0a57-4009-b8c2-510e2a001852" />
 
 # Order Service
 docker compose run --rm order_service bash bin/test
-<img width="709" height="259" alt="image" src="https://github.com/user-attachments/assets/381d8545-cfea-4369-8417-b47c8aa60263" />
 ```
+
+<img width="779" height="198" alt="image" src="https://github.com/user-attachments/assets/71197cd9-0a57-4009-b8c2-510e2a001852" />
+<img width="709" height="259" alt="image" src="https://github.com/user-attachments/assets/381d8545-cfea-4369-8417-b47c8aa60263" />
+
 
 ## Desarrollo local (sin Docker)
 
