@@ -24,6 +24,8 @@ Aplicación backend compuesta por dos microservicios en Rails: **Order Service**
 docker compose up --build
 ```
 
+Al ejecutar este comando se crean automáticamente las bases de datos, se aplican las migraciones (tablas) y se cargan los clientes iniciales del seed en el Customer Service. No hace falta ejecutar migraciones ni seeds a mano.
+
 Esto levanta:
 
 - **PostgreSQL** (puerto 5432) - Base de datos
@@ -67,20 +69,20 @@ Estados válidos: `pending`, `processing`, `shipped`, `delivered`, `cancelled`
 
 ## Ejecutar pruebas
 
-Primero levanta la infraestructura:
+Levantar primero la infraestructura:
 
 ```bash
 docker compose up -d postgres rabbitmq
 ```
 
-Luego ejecuta los tests:
+Ejecutar los tests (el script `bin/test` aplica migraciones de test si hace falta):
 
 ```bash
-# Order Service
-docker compose run --rm order_service bundle exec rspec
-
 # Customer Service
-docker compose run --rm customer_service bundle exec rspec
+docker compose run --rm customer_service bash bin/test
+
+# Order Service
+docker compose run --rm order_service bash bin/test
 ```
 
 ## Desarrollo local (sin Docker)
@@ -119,8 +121,8 @@ Requisitos: Ruby 3.2, PostgreSQL, RabbitMQ
 
 ## Verificar que todo funciona
 
-1. **Crear un pedido** desde el frontend o con cURL
-2. **Revisar la tabla `orders`** en la BD `order_service_development` - debe aparecer el pedido
-3. **Revisar la tabla `customers`** en la BD `customer_service_development` - el campo `orders_count` del cliente debe haberse incrementado
+1. Crear un pedido desde el frontend o con cURL
+2. Revisar la tabla `orders` en la BD `order_service_development` — debe aparecer el pedido
+3. Revisar la tabla `customers` en la BD `customer_service_development` — el campo `orders_count` del cliente debe haberse incrementado
 
 Si ambos ocurren, la comunicación HTTP entre servicios y el flujo de eventos con RabbitMQ están funcionando correctamente.

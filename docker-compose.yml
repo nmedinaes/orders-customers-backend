@@ -33,6 +33,8 @@ services:
     build:
       context: ./customer_service
       dockerfile: Dockerfile.dev
+    volumes:
+      - ./customer_service:/app
     environment:
       DATABASE_URL: postgres://postgres:postgres@postgres:5432/customer_service_development
       RAILS_ENV: development
@@ -52,6 +54,8 @@ services:
     build:
       context: ./customer_service
       dockerfile: Dockerfile.dev
+    volumes:
+      - ./customer_service:/app
     environment:
       DATABASE_URL: postgres://postgres:postgres@postgres:5432/customer_service_development
       RAILS_ENV: development
@@ -72,6 +76,8 @@ services:
     build:
       context: ./order_service
       dockerfile: Dockerfile.dev
+    volumes:
+      - ./order_service:/app
     environment:
       DATABASE_URL: postgres://postgres:postgres@postgres:5432/order_service_development
       RAILS_ENV: development

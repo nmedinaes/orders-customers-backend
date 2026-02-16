@@ -9,8 +9,8 @@ RSpec.describe CustomerServiceClient do
     it "returns customer details when customer exists" do
       customer_data = {
         id: 1,
-        customer_name: "Alice Johnson",
-        address: "123 Main St",
+        customer_name: "Carlos López",
+        address: "Av 6N #28N-30, Cali",
         orders_count: 5
       }
       stub_request(:get, "http://test-customer-service:3000/api/v1/customers/1")
@@ -20,8 +20,8 @@ RSpec.describe CustomerServiceClient do
 
       expect(result).not_to be_nil
       expect(result.customer_id).to eq(1)
-      expect(result.customer_name).to eq("Alice Johnson")
-      expect(result.address).to eq("123 Main St")
+      expect(result.customer_name).to eq("Carlos López")
+      expect(result.address).to eq("Av 6N #28N-30, Cali")
       expect(result.orders_count).to eq(5)
     end
 
@@ -37,12 +37,13 @@ RSpec.describe CustomerServiceClient do
 
   describe ".find" do
     it "delegates to instance" do
+      body = { "id" => 1, "customer_name" => "Andrés González", "address" => "Cra 7 #32-16, Bucaramanga", "orders_count" => 0 }.to_json
       stub_request(:get, %r{/api/v1/customers/1})
-        .to_return(status: 200, body: { id: 1, customer_name: "Test", address: "Addr", orders_count: 0 }.to_json)
+        .to_return(status: 200, body: body, headers: { "Content-Type" => "application/json" })
 
       result = described_class.find(1)
 
-      expect(result.customer_name).to eq("Test")
+      expect(result.customer_name).to eq("Andrés González")
     end
   end
 end

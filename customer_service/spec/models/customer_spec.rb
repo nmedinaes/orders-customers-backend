@@ -5,7 +5,7 @@ require "rails_helper"
 RSpec.describe Customer, type: :model do
   describe "validations" do
     it "is valid with valid attributes" do
-      customer = build(:customer, customer_name: "Alice", address: "123 Main St")
+      customer = build(:customer, customer_name: "Laura Sánchez", address: "Calle 53 #23-45, Pereira")
       expect(customer).to be_valid
     end
 

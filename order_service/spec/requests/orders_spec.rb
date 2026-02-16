@@ -6,8 +6,8 @@ RSpec.describe "Orders API", type: :request do
   before do
     customer_response = {
       id: 1,
-      customer_name: "Alice Johnson",
-      address: "123 Main St",
+      customer_name: "María García",
+      address: "Calle 80 #12-30, Medellín",
       orders_count: 0
     }.to_json
     stub_request(:get, %r{/api/v1/customers/1})
@@ -30,7 +30,7 @@ RSpec.describe "Orders API", type: :request do
 
     it "returns error when customer_id is missing" do
       get "/api/v1/orders"
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unprocessable_content)
       json = JSON.parse(response.body)
       expect(json["error"]).to eq("customer_id is required")
     end
@@ -60,7 +60,7 @@ RSpec.describe "Orders API", type: :request do
       json = JSON.parse(response.body)
       expect(json["product_name"]).to eq("Gadget")
       expect(json["quantity"]).to eq(3)
-      expect(json["customer_details"]["customer_name"]).to eq("Alice Johnson")
+      expect(json["customer_details"]["customer_name"]).to eq("María García")
       expect(Order.count).to eq(1)
     end
 
@@ -75,7 +75,7 @@ RSpec.describe "Orders API", type: :request do
           price: 9.99
         }
       }, as: :json
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unprocessable_content)
       json = JSON.parse(response.body)
       expect(json["error"]).to eq("Customer not found")
     end
@@ -89,7 +89,7 @@ RSpec.describe "Orders API", type: :request do
           price: -5
         }
       }, as: :json
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unprocessable_content)
       json = JSON.parse(response.body)
       expect(json["errors"]).to be_present
     end
